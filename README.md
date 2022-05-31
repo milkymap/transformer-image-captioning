@@ -11,51 +11,19 @@ Implementation of the paper CPTR : FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING
 ---
 ---
 
+# predictions 
 
+<p float="left">
+  <img src="static/mlm_000.png" width="400" height="500"/>
+  <img src="static/mlm_001.png" width="400" height="500"/> 
+  <img src="static/mlm_002.png" width="400" height="500"/>
+</p>
 
-# contents
-* [structure](#structure)
-* [prerequisites](#prerequisites)
-* [installation](#installation)
-
-# structure
-
-this project is structured in a modular way, it is linked to several libraries such as **[pytorch, clip(openai)]** 
-It contains the :
-* following directories and files:
-    * core
-        * this is the main file of the project
-        * it contains the definition of the transformer
-        * it is based on the paper Attention Is All You Need 
-        * i added some modification for handling multiple outpt of the decoder
-    * dataset
-        * this file contains two classes :
-        * DatasetForFeaturesExtraction 
-        * DatasetForTraining 
-    * models
-        * this file conains the definition of the CPTR model 
-        * it uses the transformer defined on the core module 
-        * it has some additional modules like : token_embedding, prediction_head       
-    * libraries
-        * contains usefull function such as : 
-        * log handler 
-        * tokenization 
-        * features extraction 
-        * model loading
-        * beam and greedy search for caption generation   
-    * static
-        * contains image and font for the readme
-    * main
-        * this is the entrypoint of the program
-        * it define three subcommand 
-        * processing : for features extraction and tokenization 
-        * learning   : training loop of the CPTR 
-        * describe   : generate caption by taking an image path 
-    * .gitignore
-    * .dockerignore
-    * Dockerfile.gpu
-    * LICENCE
-    * README.md 
+<p float="left">
+  <img src="static/mlm_002.png" width="400" height="500"/>
+  <img src="static/mlm_003.png" width="400" height="500"/> 
+  <img src="static/mlm_004.png" width="400" height="500"/>
+</p>
 
 # prerequisites
 * git
@@ -142,4 +110,56 @@ It contains the :
             --path2checkpoint /home/solver/models/checkpoint_128.th 
             --beam_width 17 
             --path2image /home/solver/images/bob.jpg
+```
+
+# structure
+
+this project is based on opensource libraries such as **[pytorch, clip(openai), opencv, PIL]** 
+It contains the :
+* following directories and files:
+    * core
+        * this is the main file of the project
+        * it contains the definition of the transformer
+        * it is based on the paper Attention Is All You Need 
+        * i added some modification for handling multiple outpt of the decoder
+    * dataset
+        * this file contains two classes :
+        * DatasetForFeaturesExtraction 
+        * DatasetForTraining 
+    * models
+        * this file conains the definition of the CPTR model 
+        * it uses the transformer defined on the core module 
+        * it has some additional modules like : token_embedding, prediction_head       
+    * libraries
+        * contains usefull function such as : 
+        * log handler 
+        * tokenization 
+        * features extraction 
+        * model loading
+        * beam and greedy search for caption generation   
+    * static
+        * contains image and font for the readme
+    * main
+        * this is the entrypoint of the program
+        * it define three subcommand 
+        * processing : for features extraction and tokenization 
+        * learning   : training loop of the CPTR 
+        * describe   : generate caption by taking an image path 
+    * .gitignore
+    * .dockerignore
+    * Dockerfile.gpu
+    * LICENCE
+    * README.md 
+
+## Citations
+
+```bibtex
+@misc{xie2021segformer,
+    title   = {CPTR: FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING}, 
+    author  = {Wei Liu, Sihan Chen, Longteng Guo, Xinxin Zhu1, Jing Liu1},
+    year    = {2021},
+    eprint  = {2101.10804},
+    archivePrefix = {arXiv},
+    primaryClass = {cs.CV}
+}
 ```
