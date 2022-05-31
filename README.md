@@ -157,7 +157,7 @@ It contains the :
 ## Citations
 
 ```bibtex
-@misc{xie2021segformer,
+@misc{Liu2021cptr,
     title   = {CPTR: FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING}, 
     author  = {Wei Liu, Sihan Chen, Longteng Guo, Xinxin Zhu1, Jing Liu1},
     year    = {2021},
