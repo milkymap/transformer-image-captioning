@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# projects static ressources
+images/
+models/
+source/
+target/

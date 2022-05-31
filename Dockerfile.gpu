@@ -1,0 +1,39 @@
+# base image derivation 
+FROM nvcr.io/nvidia/pytorch:21.08-py3
+
+# timezone handler 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Paris 
+
+# initial system requirements 
+RUN apt-get update --fix-missing && \
+    apt-get install --yes --no-install-recommends \
+        tzdata apt-utils dialog gcc git curl pkg-config build-essential ffmpeg 
+
+# user creation 
+RUN useradd --gid root --create-home solver 
+WORKDIR /home/solver 
+
+# virtualenv 
+ENV VIRTUAL_ENV=/opt/venv 
+RUN chmod -R g+rwx /home/solver && python -m venv $VIRTUAL_ENV --system-site-packages 
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# python requirements 
+RUN pip install --upgrade pip && \
+    pip install torchtext torchvision spacy pyzmq click loguru sentence_transformers rich pandas && \
+    pip install ftfy regex git+https://github.com/openai/CLIP.git && \
+    python -m spacy download en_core_web_sm
+
+# pull source code 
+COPY . ./ 
+
+# env variables
+ENV IMAGES='images/' 
+ENV SOURCE='source/'
+ENV TARGET='target/'
+ENV MODELS='models/'
+
+# entrypoint 
+ENTRYPOINT ["python", "main.py"]
+CMD ["--debug"]
