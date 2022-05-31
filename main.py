@@ -12,11 +12,6 @@ from libraries.strategies import *
 
 from model import CaptionTransformer
 
-"""
-    docker run --rm --tty --name nlogn --gpus all -v $(pwd)/source:/home/solver/source -v $(pwd)/models:/home/solver/models -v $(pwd)/target:/home/solver/target -e TERM=xterm-256color nlogn-cap:0.0 processing --path2images /home/solver/source/images --path2captions /home/solver/source/captions.json --path2vectorizer /home/solver/models/resnet152.th --extension jpg --path2features /home/solver/target/map_img2features.pkl --path2tokenids /home/solver/target/zip_img2tokenids.pkl --path2vocabulary /home/solver/target/vocabulary.pkl
-    docker run --rm --tty --name nlogn --gpus all -v $(pwd)/source:/home/solver/source -v $(pwd)/models:/home/solver/models -v $(pwd)/target:/home/solver/target -e TERM=xterm-256color nlogn-cap:0.0 learning --path2features /home/solver/target/map_img2features.pkl --path2tokenids /home/solver/target/zip_img2tokenids.pkl --path2vocabulary /home/solver/target/vocabulary.pkl --nb_epochs 92 --bt_size 128 --path2checkpoint /home/solver/models/checkpoint_###.th --checkpoint 16 --start 0
-    docker run --rm --tty --name nlogn --gpus all -v $(pwd)/source:/home/solver/source -v $(pwd)/models:/home/solver/models -v $(pwd)/target:/home/solver/target -v $(pwd)/images:/home/solver/images -e TERM=xterm-256color nlogn-cap:0.0 describe --path2vectorizer /home/solver/models/resnet152.th --path2ranker /home/solver/models/ranker.pkl --path2vocabulary /home/solver/target/vocabulary.pkl --path2checkpoint /home/solver/models/checkpoint_###.th --beam_width 16 --path2image /home/solver/images/007.jpg
-"""
 
 @click.group(chain=False, invoke_without_command=True)
 @click.option('--debug/--no-debug', help='debug mode flag', default=True)
