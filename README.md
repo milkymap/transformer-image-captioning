@@ -15,14 +15,17 @@ Implementation of the paper CPTR : FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING
 
 <p float="left">
   <img src="static/mlm_000.png" width="400" height="500"/>
-  <img src="static/mlm_001.png" width="400" height="500"/> 
-  <img src="static/mlm_002.png" width="400" height="500"/>
+  <img src="static/mlm_001.png" width="400" height="500"/>
 </p>
 
 <p float="left">
   <img src="static/mlm_002.png" width="400" height="500"/>
-  <img src="static/mlm_003.png" width="400" height="500"/> 
-  <img src="static/mlm_004.png" width="400" height="500"/>
+  <img src="static/mlm_003.png" width="400" height="500"/>
+</p>
+
+<p float="left">
+  <img src="static/mlm_004.png" width="400" height="500"/> 
+  <img src="static/mlm_005.png" width="400" height="500"/>
 </p>
 
 # prerequisites
