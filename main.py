@@ -18,6 +18,17 @@ from model import CaptionTransformer
 @click.pass_context
 def router_command(ctx, debug):
     ctx.ensure_object(dict)
+    
+    models = getenv('MODELS')
+    source = getenv('SOURCE')
+    target = getenv('TARGET')
+    images = getenv('IMAGES')
+    
+    assert models is not None and path.isdir(models)
+    assert source is not None and path.isdir(source)
+    assert target is not None and path.isdir(target)
+    assert images is not None and path.isdir(images)
+    
     ctx.obj['debug'] = debug 
     command = ctx.invoked_subcommand 
     if command is None:
