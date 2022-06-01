@@ -34,10 +34,20 @@ Implementation of the paper CPTR : FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING
 * python3-venv
 * docker  
 
-# clone the repo 
+# clone the repo and prepare data 
 ```bash
+    # clone 
     git clone https://github.com/Milkymap/transformer-image-captioning
-    cd transformer-image-captioning 
+    cd transformer-image-captioning
+    # prepare data 
+    # models is the space where resnet152 and clip will be saved 
+    # models also contains the checkpoints during training 
+    # images contains a set of image files for inference time(see docker describe step)
+    # source contains the data used for training 
+        # the data is in the next format 
+        # images directory : contains all images for training 
+        # captions.json    : is a hashmap(image_file_id=>[text, text, text])
+    # target contains extracted features such as vectors, tokenizer, vocabulary
     mkdir models images source target 
 ```
 
@@ -115,46 +125,45 @@ Implementation of the paper CPTR : FULL TRANSFORMER NETWORK FOR IMAGE CAPTIONING
             --path2image /home/solver/images/bob.jpg
 ```
 
-# structure
+# structure of the project
 
 this project is based on opensource libraries such as **[pytorch, clip(openai), opencv, PIL]** 
-It contains the :
-* following directories and files:
-    * core
-        * this is the main file of the project
-        * it contains the definition of the transformer
-        * it is based on the paper Attention Is All You Need 
-        * i added some modification for handling multiple outpt of the decoder
-    * dataset
-        * this file contains two classes :
-        * DatasetForFeaturesExtraction 
-        * DatasetForTraining 
-    * models
-        * this file conains the definition of the CPTR model 
-        * it uses the transformer defined on the core module 
-        * it has some additional modules like : token_embedding, prediction_head       
-    * libraries
-        * contains usefull function such as : 
-        * log handler 
-        * tokenization 
-        * features extraction 
-        * model loading
-        * beam and greedy search for caption generation   
-    * static
-        * contains image and font for the readme
-    * main
-        * this is the entrypoint of the program
-        * it define three subcommand 
-        * processing : for features extraction and tokenization 
-        * learning   : training loop of the CPTR 
-        * describe   : generate caption by taking an image path 
-    * .gitignore
-    * .dockerignore
-    * Dockerfile.gpu
-    * LICENCE
-    * README.md 
+It contains :
+* **core.py**
+    * this is the main file of the project
+    * it contains the definition of the transformer
+    * it is based on the paper Attention Is All You Need 
+    * i added some modifications for handling multiple output of the decoder
+* **dataset.py**
+    * this file contains two classes :
+    * DatasetForFeaturesExtraction 
+    * DatasetForTraining 
+* **model.py**
+    * this file contains the definition of the CPTR model 
+    * it uses the transformer defined on the core module 
+    * it has some additional moduless like : token_embedding, prediction_head       
+* **libraries**
+    * contains usefull functions such as : 
+    * log handler 
+    * tokenization 
+    * features extraction 
+    * model loading
+    * **beam and greedy search** for caption generation   
+* **static**
+    * contains images and fonts for the readme
+* **main.py**
+    * this is the entrypoint of the program
+    * it defines three subcommands 
+    * processing : for features extraction and tokenization 
+    * learning   : training loop of the CPTR 
+    * describe   : generate caption by taking an image path 
+* **.gitignore**
+* **.dockerignore**
+* **Dockerfile.gpu**
+* **LICENCE**
+* **README.md** 
 
-## Citations
+# Citations
 
 ```bibtex
 @misc{Liu2021cptr,
